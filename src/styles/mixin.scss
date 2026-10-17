@@ -1,0 +1,21 @@
+@mixin display() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin largePadding() {
+  padding: 20px 30px;
+}
+
+@mixin miniPadding() {
+  padding: 4px 8px;
+}
+
+@mixin mediumPadding() {
+  padding: 8px 12px;
+}
+
+@mixin borderRadius() {
+  border-radius: 10px;
+}
