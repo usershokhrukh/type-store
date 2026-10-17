@@ -12,15 +12,70 @@
     @include borderRadius();
     gap: 10px;
     background-color: var(--color-orange-light);
-
   }
 
   &__top-pimg {
     border-radius: 50px;
-    border: 1px solid 
+    border: 1px solid;
+  }
+
+  &__ul {
+    @include display();
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &__link {
+    @include mediumPadding();
+    @include borderRadius();
+    width: 100%;
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--color-blue-light);
+    }
+  }
+
+  &__exit-b {
+    @include mediumPadding();
+    @include borderRadius();
+    width: 100%;
+    border: none;
+    background-color: var(--color-red-light);
+    color: var(--color-red-main);
+    cursor: pointer;
+  }
+
+  &__link-active {
+    background-color: var(--color-blue-main);
+    color: var(--text-on-primary);
+
+    &:hover {
+      background-color: var(--color-blue-main);
+      opacity: 0.9;
+    }
   }
 }
 
 .navbar {
+  @include display();
   @include largePadding();
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &__button {
+    @include display();
+    @include miniPadding();
+    @include borderRadius();
+    border: none;
+    background-color: var(--color-blue-main);
+    color: var(--text-on-primary);
+    cursor: pointer;
+  }
 }
