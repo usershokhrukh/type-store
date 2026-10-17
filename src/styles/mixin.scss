@@ -19,3 +19,7 @@
 @mixin borderRadius() {
   border-radius: 10px;
 }
+
+@mixin font() {
+  font-family: "Afacad";
+}

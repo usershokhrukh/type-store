@@ -2,10 +2,11 @@
 @import "../styles/mixin.scss";
 @import "../styles/block/block.scss";
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  @include font();
 }
 
 .body {
@@ -14,10 +15,47 @@
   height: 100vh;
   align-items: start;
   justify-content: start;
-  background-color: var(--bg-app)
+  background-color: var(--bg-app);
 }
 
 .main {
   @include display();
   flex-direction: column;
+  height: 100%;
+  justify-content: start;
+  width: 100%;
+}
+li {
+  list-style: none;
+}
+
+/* afacad-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Afacad";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../public/fonts/afacad-v3-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* afacad-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Afacad";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../../public/fonts/afacad-v3-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* afacad-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Afacad";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../../public/fonts/afacad-v3-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+svg {
+  width: 18px;
+  height: 18px;
 }
