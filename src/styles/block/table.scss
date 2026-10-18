@@ -1,0 +1,69 @@
+.table {
+  @include mediumPadding();
+  width: 100%;
+  // border-collapse: collapse;
+
+
+  &__body {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    padding: 10px 0px;
+  }
+
+  td {
+    padding: 5px 0px;
+    @include borderRadius();
+    // background-color: red;
+    &:hover {
+      background-color: var(--color-blue-main);
+      color: var(--text-on-primary);
+      cursor: pointer;
+    }
+  }
+
+  &__image{
+    border-radius: 50px;
+  }
+
+  &__button {
+    @include borderRadius();
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--bg-surface);
+
+    &:hover {
+      background-color: var(--bg-surface-hover)
+    }
+  }
+
+  &__b-delete {
+    &:hover {
+      background-color: var(--color-red-light) !important;
+      color: var(--color-red-main) !important
+    }
+  }
+
+  &__add-button {
+    @include mediumPadding();
+    @include borderRadius();
+    // padding: 5px;s
+    border: none;
+    background-color: var(--color-orange-main);
+    color: var(--text-on-primary);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+
+  }
+
+  &__box {
+    @include display();
+    gap: 5px;
+  }
+
+}

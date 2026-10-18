@@ -3,6 +3,8 @@ import {Geist, Geist_Mono} from "next/font/google";
 import "./global.scss";
 import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
+import Provider from "@/components/provider/Provider";
+import {ThemeProvider} from "@/components/provider/ThemeProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,17 +22,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
-      <body className="body">
-        <Sidebar />
-        <main className="main">
-          <Navbar />
-          {children}
-        </main>
-      </body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <ThemeProvider>
+        <body className="body">
+          <Sidebar />
+          <main className="main">
+            <Navbar />
+            <Provider>{children}</Provider>
+          </main>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
