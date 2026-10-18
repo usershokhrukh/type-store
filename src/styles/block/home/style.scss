@@ -1,10 +1,16 @@
 .sidebar {
   @include display();
   @include largePadding();
+  position: fixed;
+  top: 0px;
   flex-direction: column;
   background-color: var(--bg-surface);
   height: 100%;
   justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  grid-column: 1/2;
+  grid-row: 1/2;
 
   &__top-profile {
     @include display();
@@ -69,7 +75,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 
-  &__button {
+  &__theme-btn {
     @include display();
     @include miniPadding();
     @include borderRadius();

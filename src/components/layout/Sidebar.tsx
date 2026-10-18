@@ -17,16 +17,16 @@ const Sidebar = () => {
         <p className="sidebar__p-tit">Lorem, ipsum dolor.</p>
       </div>
       <ul className="sidebar__ul">
-        <Link className="sidebar__link sidebar__link-active" href={"/products"}>
+        <Link className="sidebar__link sidebar__link-active" href={"/"}>
           <li className="sidebar__li ">Products</li>
         </Link>
-        <Link className="sidebar__link" href={"/products"}>
+        <Link className="sidebar__link" href={"/auth"}>
           <li className="sidebar__li">Auth</li>
         </Link>
-        <Link className="sidebar__link" href={"/products"}>
+        <Link className="sidebar__link" href={"/cart"}>
           <li className="sidebar__li">Cart</li>
         </Link>
-        <Link className="sidebar__link" href={"/products"}>
+        <Link className="sidebar__link" href={"/users"}>
           <li className="sidebar__li">Users</li>
         </Link>
       </ul>

@@ -30,3 +30,33 @@
   --error: #dc2626; 
   --info: var(--color-blue-main);
 }
+
+
+html.dark {
+  // Deep premium dark background and elevated surface cards
+  --bg-app: #0b0f19;           // Darker rich base slate
+  --bg-surface: #151b2c;       // Elevated containers/cards
+  --bg-surface-hover: #1e263f; // Hover states
+
+  // Typography tuned for reading on dark layouts
+  --text-primary: #f8fafc;     // High contrast white-slate
+  --text-secondary: #94a3b8;   // Readable muted description text
+  --text-muted: #475569;       // Placeholders and inactive items
+  --text-on-primary: #ffffff;
+
+  // Borders that don't glow or look too sharp
+  --border-subtle: #1e293b; 
+  --border-interactive: #334155; 
+
+  // Inverting badge backgrounds so text remains readable in dark mode
+  --color-blue-light: #162a45;
+  --color-green-light: #0d2a1d;
+  --color-orange-light: #3b1e11;
+  --color-red-light: #361013;
+  
+  // Brighten up the main vibrant accents for dark panels
+  --color-blue-main: #60a5fa;
+  --color-green-main: #4ade80;
+  --color-orange-main: #fb923c;
+  --color-red-main: #f87171;
+}
