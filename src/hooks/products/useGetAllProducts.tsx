@@ -7,7 +7,7 @@ export const useGetAllProducts = () => {
   return useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await axios("https://fakestoreapi.com/products?id=1`")
+      const res = await axios("https://fakestoreapi.com/products")
       return res?.data
     }
   })
