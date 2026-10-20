@@ -5,6 +5,8 @@ import Sidebar from "@/components/layout/Sidebar";
 import Navbar from "@/components/layout/Navbar";
 import Provider from "@/components/provider/Provider";
 import {ThemeProvider} from "@/components/provider/ThemeProvider";
+import ModalProvider from "@/components/provider/ModalProvider";
+import GeneralModal from "@/components/modal/GeneralModal";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,13 +26,16 @@ export default function RootLayout({children}: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <ThemeProvider>
-        <body className="body">
-          <Sidebar />
-          <main className="main">
-            <Navbar />
-            <Provider>{children}</Provider>
-          </main>
-        </body>
+        <ModalProvider>
+          <body className="body">
+            <Sidebar />
+            <main className="main">
+              <Navbar />
+              <Provider>{children}</Provider>
+            </main>
+            <GeneralModal/>
+          </body>
+        </ModalProvider>
       </ThemeProvider>
     </html>
   );
