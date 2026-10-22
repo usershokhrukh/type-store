@@ -27,14 +27,16 @@ export default function RootLayout({children}: LayoutProps<"/">) {
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <ThemeProvider>
         <ModalProvider>
-          <body className="body">
-            <Sidebar />
-            <main className="main">
-              <Navbar />
-              <Provider>{children}</Provider>
-            </main>
-            <GeneralModal/>
-          </body>
+          <Provider>
+            <body className="body">
+              <Sidebar />
+              <main className="main">
+                <Navbar />
+                {children}
+              </main>
+              <GeneralModal />
+            </body>
+          </Provider>
         </ModalProvider>
       </ThemeProvider>
     </html>

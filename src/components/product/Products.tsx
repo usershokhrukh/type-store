@@ -5,6 +5,7 @@ import { ProductSkeleton } from './ui/SkeletonProducts';
 
 const Products = () => {
   const {data, error, isLoading} = useGetAllProducts()  
+  
   return (
     <div className='products container'>
       <button className='table__add-button'>Add product</button>

@@ -56,7 +56,7 @@ const ProductsTable = ({data}: {data: ProductsType[]}) => {
                   </button>
                   <button onClick={() => {
                     setModal(true)
-                    setComp(<ProductEditModal id={id}/>)
+                    setComp(() => () => <ProductEditModal id={id}/>)
                   }} className="table__button">
                     <span className="table__sp">
                       <svg

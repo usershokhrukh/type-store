@@ -1,4 +1,4 @@
-.modal{
+.modal {
   @include display();
   position: fixed;
   background-color: color-mix(in srgb, var(--bg-app) 50%, transparent);
@@ -7,4 +7,106 @@
   height: 100vh;
   top: 0px;
   left: 0px;
+
+  &__box {
+    @include display();
+    @include largePadding();
+    @include borderRadius();
+    position: relative;
+    width: 100%;
+    background-color: var(--bg-surface);
+    max-width: 500px;
+    flex-direction: column;
+    align-items: end;
+    gap: 10px;
+    max-height: 90vh;
+    justify-content: start;
+    overflow: auto;
+    padding-top: 40px;
+  }
+
+
+  &__top {
+    @include display();
+    justify-content: end;
+    width: 100%;
+  }
+  .form {
+    @include display();
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    &__input {
+      @include mediumPadding();
+      @include borderRadius();
+      width: 100%;
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid
+        color-mix(in srgb, var(--color-blue-main) 30%, transparent);
+    }
+
+    &__textarea {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      max-height: 300px;
+      min-height: 100px;
+    }
+
+    &__submit {
+      @include mediumPadding();
+      @include borderRadius();
+      width: 100%;
+      border: 1px solid
+        color-mix(in srgb, var(--color-blue-main) 30%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--color-blue-main) 30%,
+        transparent
+      );
+      cursor: pointer;
+    }
+
+    &__drop {
+      @include display();
+      align-items: start;
+      justify-content: end;
+      @include mediumPadding();
+      position: relative;
+      height: 150px;
+      min-width: 100px;
+      width: 100%;
+
+      &-active {
+        border: 2px dashed var(--text-on-primary)
+      }
+    }
+
+    &__img-cont {
+      @include display();
+      @include borderRadius();
+      @include mediumPadding();
+      width: 100%;
+      height: 130px;
+      align-self: center;
+      justify-self: center;
+    }
+
+    &__img {
+      @include borderRadius();
+      width: 100%;
+      height: 130px;
+      object-fit: contain;
+    }
+
+    &__cancel {
+      @include display();
+      @include borderRadius();
+      background-color: var(--color-red-main);
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+    }
+  }
 }
