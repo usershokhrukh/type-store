@@ -3,7 +3,7 @@
 import {useModal} from "@/context/ModalContext";
 
 const GeneralModal = () => {
-  const {modal, setModal, comp, setComp} = useModal();
+  const {modal, setModal, comp, setComp, disable, setDisable} = useModal();
   const ModalContent = comp
   console.log(comp);
   
@@ -11,6 +11,10 @@ const GeneralModal = () => {
     <>
       {modal ? (
         <div className="modal">
+          {
+            disable ?  <div className="modal__disabled">loading...</div> : null
+          }
+         
           <div className="modal__box">
             <div className="modal__top">
               <span

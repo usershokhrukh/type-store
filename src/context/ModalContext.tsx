@@ -6,6 +6,8 @@ export interface ModalType {
   setModal: React.Dispatch<React.SetStateAction<boolean>>,
   comp: React.ComponentType<any> | null,
   setComp: React.Dispatch<React.SetStateAction<React.ComponentType<any> | null>>
+  disable: boolean,
+  setDisable: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const ModalContext = createContext<ModalType | null>(null)
 

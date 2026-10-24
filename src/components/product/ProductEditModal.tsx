@@ -1,13 +1,13 @@
 "use client";
 
+import {useModal} from "@/context/ModalContext";
+import {useEditProduct} from "@/hooks/products/useEditProduct";
 import {useGetOneProduct} from "@/hooks/products/useGetOneProduct";
 import {ProductsType} from "@/type/products/ProductsType";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 const ProductEditModal = ({id}: {id: number}) => {
   const {data, error, isPending} = useGetOneProduct(id);
-  console.log(data);
-
   const [formData, setFormData] = useState<ProductsType>({
     title: data?.title,
     price: data?.price,
@@ -32,7 +32,11 @@ const ProductEditModal = ({id}: {id: number}) => {
     }
   }, [data]);
 
-  const handleChange = (e: React.ChangeEvent) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
     if (e.target.name != "count") {
       setFormData({
         ...formData,
@@ -49,82 +53,83 @@ const ProductEditModal = ({id}: {id: number}) => {
     }
   };
 
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [preview, setPreview] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleContainerClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const processFile = (file: File) => {
+    if (!file || !file.type?.startsWith("image/")) return;
+    setPreview(URL.createObjectURL(file));
+    setIsDragging(false);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      processFile(file);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     setIsDragging(true);
-
+    processFile(e.dataTransfer.files[0]);
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-    let address = e.dataTransfer.getData("text/uri-list");
-    if (!address) {
-      address = e.dataTransfer.getData("text/plain");
+  useEffect(() => {
+    if (data) {
+      setPreview(data?.image);
     }
-    console.log(address);
-    
-    setImageUrl(address);
+  }, [data]);
+
+  const handleImageRemove = () => {
+    setPreview(data?.image);
   };
 
-//   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-//   e.preventDefault();
-//   setIsDragging(false);
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      image: String(preview),
+    });
+  }, [preview]);
 
-//   // 1. First priority: Try to grab pure link arrays from the browser
-//   let address = e.dataTransfer.getData("text/uri-list");
+  const {mutate, data: editData, isPending: editPending} = useEditProduct();
 
-//   // 2. Second priority: If text/uri-list is blank, read text/plain
-//   if (!address) {
-//     const plainText = e.dataTransfer.getData("text/plain");
+  const {setDisable, setModal} = useModal();
 
-//     // If the dropped item is a direct web link, use it
-//     if (plainText.startsWith("http://") || plainText.startsWith("https://")) {
-//       address = plainText;
-//     } 
-//     // If it's a piece of HTML text from a page, check if an img tag is inside it
-//     else {
-//       const htmlText = e.dataTransfer.getData("text/html");
-//       if (htmlText) {
-//         // Use a temporary browser element to parse the HTML string safely
-//         const parser = new DOMParser();
-//         const doc = parser.parseFromString(htmlText, "text/html");
-//         const imgElement = doc.querySelector("img");
-//         if (imgElement && imgElement.src) {
-//           address = imgElement.src;
-//         }
-//       }
-//     }
-//   }
+  useEffect(() => {
+    if (!editData && editPending) {
+      setDisable(true);
+    }
+  }, [editData, editPending]);
 
-//   // 3. Fallback: If a user drops a local file item from their desktop files
-//   if (!address && e.dataTransfer.files.length > 0) {
-//     const file = e.dataTransfer.files[0];
-//     if (file.type.startsWith("image/")) {
-//       // Creates a temporary local web address pointer for the image asset
-//       address = URL.createObjectURL(file);
-//     }
-//   }
+  useEffect(() => {
+    if (editData) {
+      setDisable(false);
+      setModal(false);
+    }
+  }, [editData]);
 
-//   // Set state if a clean web address string was found
-//   if (address) {
-//     console.log("Clean Image Address Found:", address);
-//     setImageUrl(address);
-//   } else {
-//     console.error("The item dropped could not be resolved to an image link address.");
-//   }
-// };
-
-  // useEffect(() => {
-  //   if (data && !imageUrl) {
-  //     setImageUrl(data?.image);
-  //   }
-  // }, [data]);
+  const handleSubmit = (e: Event) => {
+    e.preventDefault();
+    try {
+      mutate([id, formData])
+      setDisable(true)
+    }catch(error: unknown) {
+      if(error instanceof Error) {
+        throw new Error(error.message)
+      }
+    }
+  }
 
   return (
-    <form className="form" action="">
+    <form onSubmit={handleSubmit} className="form" action="">
       <>
         {data && !isPending && !error ? (
           <>
@@ -170,29 +175,43 @@ const ProductEditModal = ({id}: {id: number}) => {
               placeholder="count"
             />
             <div
-            onDragOver={handleDragOver}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setIsDragging(true);
+              }}
+              onDragLeave={() => setIsDragging(false)}
               onDrop={handleDrop}
-              
               className={`form__drop`}
             >
-              <div  className={`form__img-cont  ${isDragging ? "form__drop-active" : ""}`}>
-                {imageUrl && !isPending ? (
-                  <img src={imageUrl} alt="" className="form__img" />
-                ) : !imageUrl && isPending ? (
+              <input
+                onChange={handleInputChange}
+                style={{display: "none"}}
+                type="file"
+                ref={fileInputRef}
+              />
+              <div
+                className={`form__img-cont  ${isDragging ? "form__drop-active" : ""}`}
+                onClick={handleContainerClick}
+              >
+                {preview && !isPending ? (
+                  <img src={preview} alt="" className="form__img" />
+                ) : !preview && isPending ? (
                   "loading..."
                 ) : (
                   "no image"
                 )}
               </div>
-              <span className="form__cancel">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path>
-                </svg>
-              </span>
+              {data?.image != preview ? (
+                <span onClick={handleImageRemove} className="form__cancel">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path>
+                  </svg>
+                </span>
+              ) : null}
             </div>
             <button className="form__submit" type="submit">
               edit

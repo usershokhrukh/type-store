@@ -25,6 +25,16 @@
     padding-top: 40px;
   }
 
+  &__disabled {
+    @include display();
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: color-mix(in srgb, var(--bg-app) 50%, transparent);
+    top: 0px;
+    left: 0px;
+    z-index: 2
+  }
 
   &__top {
     @include display();
@@ -79,7 +89,7 @@
       width: 100%;
 
       &-active {
-        border: 2px dashed var(--text-on-primary)
+        border: 2px dashed var(--text-on-primary);
       }
     }
 
