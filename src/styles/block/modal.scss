@@ -1,3 +1,6 @@
+@use "/src/styles/mixin.scss" as *;
+
+
 .modal {
   @include display();
   position: fixed;

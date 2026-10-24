@@ -1,3 +1,4 @@
+@use "/src/styles/mixin.scss" as *;
 .container {
   @include mediumPadding();
   width: 100%;

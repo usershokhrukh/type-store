@@ -1,3 +1,6 @@
+@use "/src/styles/mixin.scss" as *;
+
+
 .table {
   @include mediumPadding();
   width: 100%;
