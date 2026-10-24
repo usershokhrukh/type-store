@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ProductSkeleton } from "./ui/SkeletonProducts";
 import { useModal } from "@/context/ModalContext";
 import ProductEditModal from "./ProductEditModal";
+import { useRouter } from "next/navigation";
 
 const ProductsTable = ({data}: {data: ProductsType[]}) => {
   const {
@@ -13,6 +14,7 @@ const ProductsTable = ({data}: {data: ProductsType[]}) => {
     isPending: deletePending,
   } = useDeleteProduct();
   const {modal, setModal, setComp} = useModal()
+  const route = useRouter()
   return (
     <>
     {
@@ -43,7 +45,9 @@ const ProductsTable = ({data}: {data: ProductsType[]}) => {
               <td>{category}</td>
               <td>
                 <div className="table__box">
-                  <button className="table__button">
+                  <button onClick={() => {
+                    route.push(`/products/${id}`)
+                  }} className="table__button">
                     <span className="table__sp">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

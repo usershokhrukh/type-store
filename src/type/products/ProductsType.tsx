@@ -6,7 +6,7 @@ export interface ProductsType {
   description: string,
   category: string,
   rating: {
-    rate: number,
-    count: number
+    rate?: number,
+    count?: number
   }
 }

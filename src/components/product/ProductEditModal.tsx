@@ -116,9 +116,10 @@ const ProductEditModal = ({id}: {id: number}) => {
     }
   }, [editData]);
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      if(formData?.category)
       mutate([id, formData])
       setDisable(true)
     }catch(error: unknown) {
@@ -198,7 +199,7 @@ const ProductEditModal = ({id}: {id: number}) => {
                 ) : !preview && isPending ? (
                   "loading..."
                 ) : (
-                  "no image"
+                  "no image, (drop or click)"
                 )}
               </div>
               {data?.image != preview ? (
