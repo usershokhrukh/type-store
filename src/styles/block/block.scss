@@ -1,9 +1,13 @@
-@use "./general.scss" ;
-@use "./home/style.scss";
-@use "./users/style.scss" ;
-@use "./products/style.scss";
-@use "./cart/style.scss";
-@use "./auth/style.scss";
-@use "./table.scss";
-@use "./modal.scss";
-@use "./skeleton.scss"
+@use "../mixin.scss" as *;
+@use "../variables.scss" as *;
+
+// 2. Change your child imports to use @import so they share this exact scope
+@import "./general.scss";
+@import "./home/style.scss";
+@import "./users/style.scss";
+@import "./products/style.scss";
+@import "./cart/style.scss";
+@import "./auth/style.scss";
+@import "./table.scss";
+@import "./modal.scss";
+@import "./skeleton.scss";

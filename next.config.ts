@@ -1,18 +1,18 @@
-import type { NextConfig } from "next";
+import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
   images: {
-    remotePatterns : [
+    remotePatterns: [
       {
         protocol: "https",
         hostname: "fakestoreapi.com",
         port: "",
-        pathname: "/img/**"
-      }
-    ]
+        pathname: "/img/**",
+      },
+    ],
   },
 
   turbopack: {
@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
-  },
+  }
 };
 
 export default nextConfig;
