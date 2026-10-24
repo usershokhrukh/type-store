@@ -4,9 +4,7 @@ import {useModal} from "@/context/ModalContext";
 
 const GeneralModal = () => {
   const {modal, setModal, comp, setComp, disable, setDisable} = useModal();
-  const ModalContent = comp
-  console.log(comp);
-  
+  const ModalContent = comp  
   return (
     <>
       {modal ? (

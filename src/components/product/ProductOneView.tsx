@@ -6,8 +6,6 @@ const ProductOneView = () => {
   const route = useRouter();
   const {data, isPending, error} = useGetOneProduct(Number(id));
   
-  console.log(data);
-  
   return (
     <div className="products__one">
       <div className="products__one-top">

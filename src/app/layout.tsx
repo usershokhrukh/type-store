@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <ThemeProvider>
         <ModalProvider>
           <Provider>
+      <ThemeProvider>
             <body className="body">
               <Sidebar />
               <main className="main">
@@ -36,9 +36,9 @@ export default function RootLayout({children}: LayoutProps<"/">) {
               </main>
               <GeneralModal />
             </body>
+      </ThemeProvider>
           </Provider>
         </ModalProvider>
-      </ThemeProvider>
     </html>
   );
 }

@@ -11,8 +11,8 @@ const Sidebar = () => {
           width={30}
           height={30}
           className="sidebar__top-pimg"
-          src=""
-          alt=""
+          src="#"
+          alt="img"
         />
         <p className="sidebar__p-tit">Lorem, ipsum dolor.</p>
       </div>
