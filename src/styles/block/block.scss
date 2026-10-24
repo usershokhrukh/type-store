@@ -1,9 +1,9 @@
-@use "./general.scss" as *;
-@use "./home/style.scss"  as *;
-@use "./users/style.scss" as *;
-@use "./products/style.scss" as *;
-@use "./cart/style.scss" as *;
-@use "./auth/style.scss" as *;
-@use "./table.scss" as *;
-@use "./modal.scss" as *;
-@use "./skeleton.scss" as *
+@use "./general.scss" ;
+@use "./home/style.scss";
+@use "./users/style.scss" ;
+@use "./products/style.scss";
+@use "./cart/style.scss";
+@use "./auth/style.scss";
+@use "./table.scss";
+@use "./modal.scss";
+@use "./skeleton.scss"

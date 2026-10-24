@@ -1,6 +1,6 @@
-@use "../styles/variables.scss" as *;
+@use "../styles/variables.scss";
 @use "../styles/mixin.scss";
-@use "../styles/block/block.scss" as *;
+@use "../styles/block/block.scss";
 
 * {
   padding: 0;
