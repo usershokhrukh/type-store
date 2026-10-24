@@ -1,6 +1,6 @@
-@import "../styles/variables.scss";
-@import "../styles/mixin.scss";
-@import "../styles/block/block.scss";
+@use "../styles/variables.scss" as *;
+@use "../styles/mixin.scss" as *;
+@use "../styles/block/block.scss" as *;
 
 * {
   padding: 0;
